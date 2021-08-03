@@ -8,20 +8,19 @@ $(document).ready(function () {
 function showCards() {
     $.ajax({
         type: "GET",
-        url: "",
+        url: "/allshuttles",
         data: {},
         success: function (response) {
-            let cards = response[""];  // 값 정하기
+            let cards = response["allshuttle"];
             for (let i = 0; i < cards.length; i++) {
-                for (let j = 0; j < cards[i]['이름'].length; j++) {
-                    makeCard(cards[i]['날짜'], cards[i]['당첨자'], i, j)
+                for (let j = 0; j < cards[i]['content'].length; j++) {
+                    makeCard(cards[i]['data'], cards[i]['winner'], i, j)
                 }
             }
         }
     })
 }
 
-// 함수 인자(날짜, 당첨자, 셔틀별 이름, 셔틀별 아이템) <-- 이름, 아이템은 또 for문 실시
 function makeCard(days, winners, i, j) {
     let temp_html = `
     <div class="wrap">
@@ -31,10 +30,10 @@ function makeCard(days, winners, i, j) {
             <div class="input-box">
             </div>
             <div class="memo-wrap">
-            {% for memo in memos %}
+            {% for shuttle in shuttles %}
                 <div class="memo-list">
-                    <span class="memo-name">{{memo[${i}][${j}]['이름']}}</span>
-                    <span class="memo-item">{{memo[${i}][${j}]['아이템']}}</span>
+                    <span class="memo-name">{{shuttle[${i}]['content'][${j}]['name']}}</span>
+                    <span class="memo-item">{{shuttle[${i}]['content'][${j}]['item']}}</span>
             {% endfor %}
             </div>
         </div>
@@ -68,22 +67,23 @@ function showMemos() {
         success: function(response) {
             let item_memos = response['memos'];  // 메모창 받아오기
             for (let i = 0; i < item_memos.length; i++) {
-                makeMemo(item_memos[i]['이름'], item_memos[i]['아이템'], i)
+                for (let j = 0; j < item_memos[i]['content'].length; j++)
+                makeMemo(item_memos[i]['content'][j]['name'], item_memos[i]['content'][j]['item'], j)
             }
         }
     })
 }
 
-function makeMemo(name, item, i) {
+function makeMemo(name, item, j) {
     let temp_memos = `
     <div class="memo-list">
         <span class="memo-name">${name}</span>
         <span class="memo-item">${item}</span>
-        <span class="memo-del${i}"><button class="btn btn-dark btn-sm">삭제</button></span>
+        <span class="memo-del${j}"><button class="btn btn-dark btn-sm">삭제</button></span>
     </div>
     `;
     $('.memo-wrap').append(temp_memos);
-    $(`.memo-del${i}`).click(function() {
+    $(`.memo-del${j}`).click(function() {
         deleteBtn(name);
     })
 }
