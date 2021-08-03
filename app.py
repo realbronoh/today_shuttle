@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, session
 app = Flask(__name__)
 
 from pymongo import MongoClient
@@ -77,21 +77,23 @@ def get_additem():
 
 @app.route('/additem', methods=['POST'])
 def post_additem():
-    item = request.form['item']
-    id = request.form['id']
+    item = request.form['items_give']
+    
+    userID = session['user']['userID']
+    print(userID) #
 
     now = datetime.datetime.now()
     nowDate = now.strftime('%Y-%m-%d')
 
     new_items = {
-        'user': id,
+        'user': userID,
         'items': item
     }
 
     additem_result = db.items.insert_one(new_items)
-    print(additem_result)
+    print(new_items)
 
-    update_result = db.shuttles.update_one({'date': nowDate}, new_items )    
+    update_result = db.shuttles.update_one({'date': nowDate}, { '$push' : { 'content': new_items }})    
     # db.shuttles.update_one({'date': nowDate}, { '$push' : { 'content': new_items }})
     # db.shuttles.update_one({'data': nowDate}, new_items)
     return jsonify({'result': 'success'})
