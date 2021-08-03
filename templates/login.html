@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- css -->
+    <link rel="stylesheet" href="/static/css/normalize.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>User Login System</title>
+</head>
+
+<body>
+
+    <h1>Hello</h1>
+    <div class="card-wrapper">
+        <!-- sign up card -->
+        <div class="card hide" id="sign-up-card">
+            <h1 class="center">Create an Account</h1>
+            <form name="signup-form">
+
+                <label for="userID">User ID</label>
+                <input type="text" name="userID" class="field" required>
+
+                <label for="name">Name</label>
+                <input type="text" name="name" class="field" required>
+
+                <label for="password">Password</label>
+                <input type="password" name="password" class="field" required>
+
+                <p class="error error--hidden"></p>
+
+                <input type="submit" value="Sign Up" class="btn">
+
+            </form>
+        </div>
+
+        <!-- Change Password Card -->
+        <div class="card hide" id="change-pw-card">
+            <h1 class="center">Change Password</h1>
+            <form name="change-pw-form">
+
+                <label for="userID">ID</label>
+                <input type="text" name="userID" class="field" required>
+
+                <label for="oldPassword">Old Password</label>
+                <input type="password" name="oldPassword" class="field" required>
+
+                <label for="newPassword">New Password</label>
+                <input type="password" name="newPassword" class="field" required>
+
+                <p class="error error--hidden"></p>
+                <input type="submit" value="Change" class="btn">
+
+            </form>
+        </div>
+
+        <!-- login card -->
+        <div class="card" id="log-in-card">
+            <h1 class="center">Log In</h1>
+            <form name="login-form">
+
+                <label for="userID">ID</label>
+                <input type="text" name="userID" class="field" required>
+
+                <label for="password">Password</label>
+                <input type="password" name="password" class="field" required>
+
+                <p class="error error--hidden"></p>
+
+                <input type="submit" value="Log In" class="btn">
+                <input id="createAccountBtn" type="button" value="Create Account" class="btn">
+                <input id="changePWBtn" type="button" value="Change Password" class="btn">
+            </form>
+        </div>
+    </div>
+    <!-- JS scripts -->
+    <script src="/static/js/login.js"></script>
+
+</body>
+
+</html>
