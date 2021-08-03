@@ -73,12 +73,12 @@
 // }
 
 function postShuttle() {
-    let items = $('input-item').val();
-    
+    let items = $('#input-item').val();
+
 
     $.ajax({
         type: "POST",
-        url: "",  // 라우트
+        url: "/additem",  // 라우트
         data: {items_give: items}, // 아이템 보내기 
         success: function(response) {
             if (response["result"] == "success") {
