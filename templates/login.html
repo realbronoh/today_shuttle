@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TodayShuttle</title>
+
+  <!-- 부트스트랩css -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+  rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!-- jquery CDN-->
+  <script src="https://code.jquery.com/jquery-3.6.0.js" 
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="../static/css/login.css">
+
+</head>
+<body>
+  <main class="form-signin">
+    <!-- <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+    <h1 class="h3 mb-3 fw-normal">로그인</h1>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="inputName" placeholder="Name">
+      <label for="inputName">이름</label>
+    </div>
+
+    <div class="form-floating">
+      <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+      <label for="inputPassword">비밀번호</label>
+    </div>
+
+
+    <button onclick="login()" class="w-100 btn btn-lg btn-primary" style="margin-bottom: 0.6rem;">로그인</button>
+  </main>
+
+  <!-- 부트스트랩 js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
