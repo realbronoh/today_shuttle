@@ -21,7 +21,7 @@ function showCards() {
     })
 }
 
-function makeCard(days, winners, i, j) {
+function makeCard(days, winners, i, j) {  // 진자템플릿 라우팅 필요
     let temp_html = `
     <div class="wrap">
       <div class="p-5 mb-4 bg-light rounded-3">
@@ -34,7 +34,7 @@ function makeCard(days, winners, i, j) {
                 <div class="memo-list">
                     <span class="memo-name">{{shuttle[${i}]['content'][${j}]['name']}}</span>
                     <span class="memo-item">{{shuttle[${i}]['content'][${j}]['item']}}</span>
-            {% endfor %}
+            {% endfor %} 
             </div>
         </div>
       </div>
