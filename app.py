@@ -1,15 +1,17 @@
-from flask import Flask
+from flask import Flask, jsonify, request
 app = Flask(__name__)
 
 from pymongo import MongoClient
 client = MongoClient('3.35.205.48', 27017)
 db = client.today_shuttle
 
+import datetime
+
 from apscheduler.schedulers.blocking import BlockingScheduler
  # 실행할 함수
 
 # import threading
-import multiprocessing
+# import multiprocessing
 
 def cronwork():
     def exec_cron():
@@ -41,8 +43,32 @@ def home():
 # main data 불러오기
 @app.route('/allshuttles', methods=['GET'])
 def allshuttles():
-    allshuttle = db.shuttles.find({}, {'_id': 0})
-    return;
+    allshuttle = list(db.shuttles.find({}, {'_id': 0}).sort({'date': -1}))
+    # allshuttle = list(db.shuttles.find({}, {'_id': 0}).sort({'date': -1}))
+    print(allshuttle)
+    return jsonify({'result': 'success', 'allshuttle': allshuttle})
+
+# 오늘 셔틀 추가
+@app.route('/addtodayshuttle', methods=['GET'])
+def add_today():
+    return new_today_shuttle()
+
+def new_today_shuttle():
+    now = datetime.datetime.now()
+    nowDate = now.strftime('%Y-%m-%d')
+
+    today_shuttle = {
+        'date': nowDate,
+        'content': []
+    }
+
+    db.shuttles.insert_one(today_shuttle)
+    return None
+
+@app.route('/gettoday', methods=['GET'])
+def get_today():
+    today_shuttle = list(db.today.find({}, {'_id':0}))
+    return jsonify({'result': 'success', 'today_shuttle': today_shuttle})
 
 # item 추가
 @app.route('/additem', methods=['GET'])
@@ -51,12 +77,43 @@ def get_additem():
 
 @app.route('/additem', methods=['POST'])
 def post_additem():
+    item = request.form['item']
+    id = request.form['id']
+
+    now = datetime.datetime.now()
+    nowDate = now.strftime('%Y-%m-%d')
+
+    new_items = {
+        'user': id,
+        'items': item
+    }
+
+    additem_result = db.items.insert_one(new_items)
+    print(additem_result)
+
+    update_result = db.shuttles.update_one({'date': nowDate}, new_items )    
+    # db.shuttles.update_one({'date': nowDate}, { '$push' : { 'content': new_items }})
+    # db.shuttles.update_one({'data': nowDate}, new_items)
+    return jsonify({'result': 'success'})
+
+# 셔틀 만들기
+@app.route('/makeshuttle', methods=['GET'])
+def makeshuttles():
+
+    new_shuttle = {
+        'date': '2021-08-01',
+        'winner': ['홍예지', '김갑수'],
+        'content': [{'name': '김명민', 'item': '참치캔, 모니터'}, {'name' :'호날두', 'item':'콜라' }]
+    }
+
+    db.shuttles.insert_one(new_shuttle)
+    return "muyaho"
+
+# 물품 지우기
+@app.route('/delete', methods=['POST'])
+def deleteitem():
     return
 
 if __name__ == '__main__':  
-    t = multiprocessing.Process(target=cronwork)
-    t.start()
-    t.join()
-    print("무야호")
-    app.run('0.0.0.0', port=5000, debug=True, threaded=True)
+    app.run('0.0.0.0', port=5000, debug=True)
    
