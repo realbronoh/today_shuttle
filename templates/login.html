@@ -18,15 +18,27 @@
 <body>
 
     <h1>Hello</h1>
-    <div class="card-wrapper">@app.route('/')
-      def home():
-          return User().render_homepage()dden"></p>
+    <div class="card-wrapper">
+        <!-- sign up card -->
+        <div class="card hide" id="sign-up-card">
+            <h1 class="center">Create an Account</h1>
+            <form name="signup-form">
+
+                <label for="userID">User ID</label>
+                <input type="text" name="userID" class="field" required>
+
+                <label for="name">Name</label>
+                <input type="text" name="name" class="field" required>
+
+                <label for="password">Password</label>
+                <input type="password" name="password" class="field" required>
+
+                <p class="error error--hidden"></p>
 
                 <input type="submit" value="Sign Up" class="btn">
 
             </form>
         </div>
-
         <!-- Change Password Card -->
         <div class="card hide" id="change-pw-card">
             <h1 class="center">Change Password</h1>

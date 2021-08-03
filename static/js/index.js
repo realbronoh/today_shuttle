@@ -73,9 +73,8 @@
 // }
 
 function postShuttle() {
-    let items = $('#input-item').val();
-
-
+    let items = $('#post-sub').val();
+    console.log(items);
     $.ajax({
         type: "POST",
         url: "/additem",  // 라우트

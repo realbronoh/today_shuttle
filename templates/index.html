@@ -39,7 +39,7 @@
               <h1 class="display-5 fw-bold">00월 00일의 셔틀 : </h1>
               <div class="input-box">
                 <input id="post-sub" class="form-control post-sub" placeholder="필요 물품을 적어주세요!">
-                <button id="btn-post" class="btn btn-primary btn-post">제출</button>
+                <button id="btn-post" class="btn btn-primary btn-post" onclick="postShuttle()">제출</button>
               </div>
               <div class="memo-wrap">
                 {% for person in each_data['content'] %}

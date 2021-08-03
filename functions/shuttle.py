@@ -26,21 +26,23 @@ class Shuttle():
         item = request.form['items_give']
         
         userID = session['user']['userID']
-        print(userID) #
 
         now = datetime.datetime.now()
         nowDate = now.strftime('%Y-%m-%d')
 
         new_items = {
-            'user': userID,
-            'items': item
+            'name': userID,
+            'item': item
         }
 
         additem_result = db.items.insert_one(new_items)
         print(new_items)
 
         if db.shuttles.update_one({'date': nowDate}, { '$push' : { 'content': new_items }}):
+
+            db.users.update_one({"userID": userID}, {'$push': {'postings': new_items['_id']}})
             return jsonify({'result': 'success'}), 200
+
         return jsonify({"error": "post item failed"}), 400
 
         # db.shuttles.update_one({'date': nowDate}, { '$push' : { 'content': new_items }})

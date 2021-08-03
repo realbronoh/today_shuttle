@@ -14,6 +14,7 @@ class User:
     def render_homepage(self):
         data = sorted(db.shuttles.find({}), key=lambda x: x['date'], reverse=True)
         #########################################################
+        print(data)
         return render_template('index.html', session=session, data=data, today='2021-08-03')
 
 
