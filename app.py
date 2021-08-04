@@ -13,7 +13,7 @@ from functions.cron import *
 
 #################################################
 
-Shuttle().get_winner()
+# Shuttle().get_winner()
 
 
 
