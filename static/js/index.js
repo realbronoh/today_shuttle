@@ -87,15 +87,10 @@ function postShuttle() {
                 alert('로그인 먼저 하삼');
             }
         },
-<<<<<<< HEAD
         error: function(response){
             alert(response.responseJSON.error);
             window.location.reload();
 
-=======
-        fail: function(response) {
-            alert('로그인 먼저 해주세요!');
->>>>>>> front-end
         }
     })
 }
@@ -113,7 +108,6 @@ function deleteBtn(name) {
         }
     })
 }
-<<<<<<< HEAD
 
 ///////////////////////////////////////////////
 // Delete Button  (노진형)
@@ -136,5 +130,3 @@ function handleDeleteBtn(id, date){
         }
     })
 }
-=======
->>>>>>> front-end

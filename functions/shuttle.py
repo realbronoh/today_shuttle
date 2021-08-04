@@ -44,15 +44,9 @@ class Shuttle():
         nowDate = now.strftime('%Y-%m-%d')
 
         new_items = {
-<<<<<<< HEAD
             'name': name,
             'item': item,
             'userID': userID
-=======
-            'name': name,  ## 수정(기존에 userID) by Dapsu
-            'item': item,
-            'userID' : userID
->>>>>>> front-end
         }
 
         additem_result = db.items.insert_one(new_items)
