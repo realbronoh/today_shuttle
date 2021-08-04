@@ -2,15 +2,8 @@
 from flask import request, session, jsonify
 from pymongo import MongoClient
 import datetime
-<<<<<<< Updated upstream
-# from bson.json_util import dumps
-
 import random
-
-import pymongo
-=======
 from bson import ObjectId
->>>>>>> Stashed changes
 
 ##########################
 # DB
@@ -75,7 +68,6 @@ class Shuttle():
         # db.shuttles.update_one({'date': nowDate}, { '$push' : { 'content': new_items }})
         # db.shuttles.update_one({'data': nowDate}, new_items)
 
-<<<<<<< Updated upstream
     def get_winner(self):
         # now = datetime.datetime.now()
         # nowDate = now.strftime('%Y-%m-%d')
@@ -114,7 +106,6 @@ class Shuttle():
 
 
 
-=======
     def delete_item(self):
         id = ObjectId(request.form.get('_id'))
         posted_date = request.form.get('date')
@@ -145,6 +136,5 @@ class Shuttle():
             return jsonify({"success": "deleted successfully"}), 200
 
         return jsonify({"error": "deleting failed"}), 400
->>>>>>> Stashed changes
 
 
