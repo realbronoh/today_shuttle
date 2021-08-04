@@ -15,7 +15,6 @@ class User:
     # 원본
     def render_homepage(self):
         data = sorted(db.shuttles.find({}), key=lambda x: x['date'], reverse=True)
-<<<<<<< HEAD
         ##############################
         ## Suttle().post_additem() 내 형식이랑 같아야 함
         now = datetime.datetime.now()
@@ -23,25 +22,15 @@ class User:
         return render_template('index.html', session=session, data=data, today=today)
 
 
-=======
-        #########################################################
-        print(data)
-        return render_template('index.html', session=session, data=data, today='2021-08-04')
->>>>>>> front-end
 
 
     def start_session(self, user):
         # delete before store user data in session
         del user['password']
-<<<<<<< HEAD
-        del user['postings']
-
-=======
         try:
             del user['postings']  ## 수정 부분
         except:
             pass
->>>>>>> front-end
         session['logged_in'] = True
         session['user'] = user
 
