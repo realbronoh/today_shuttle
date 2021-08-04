@@ -1,5 +1,13 @@
+body {
+    background-color: #DEDCEE;
+}
+
+.current-card {
+    background-color: #FFFCF0;
+}
+
 .main {
-    width: 60;
+    width: 60%;
 }
 
 .header-box {
@@ -27,6 +35,20 @@
 .btn-post {
     padding: 0.4rem 1rem;
     margin: 1rem;
+    background-color: #6A60A9;
+    outline: 0;
+    border: 0;
+}
+
+.btn-post:hover {
+    background-color: #DEDCEE;
+}
+
+.sign-btn {
+    background-color: #FBD14B;
+    color: white;
+    outline: 0;
+    border: 0;
 }
 
 .memo-wrap {
