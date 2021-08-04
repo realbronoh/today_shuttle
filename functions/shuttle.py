@@ -40,9 +40,6 @@ class Shuttle():
 
         name = session['user']['name']  ## 수정(추가함) by Dapsu
 
-        now = datetime.datetime.now()
-        nowDate = now.strftime('%Y-%m-%d')
-
         new_items = {
             'name': name,
             'item': item,
@@ -52,6 +49,7 @@ class Shuttle():
         additem_result = db.items.insert_one(new_items)
         print(new_items)
 
+        nowDate = sorted(db.shuttles.find({}), key=lambda x: x['date'], reverse=True)[0]['date']
         if db.shuttles.update_one({'date': nowDate}, { '$push' : { 'content': new_items }}):
 
             db.users.update_one({"userID": userID}, {'$push': {'postings': new_items['_id']}})
@@ -80,20 +78,16 @@ class Shuttle():
         player = set()
         
         for i in info :
-            player.add(i.get('name'))
-            # print(data[0]['content'][i]) <- 이게 뭔 뻘짓
-
-        # 리스트 중복 제거 (한 사람이 여러 개 넣어도 당첨 확률은 다른이들과 동일함)
-        # new_list = []
-        # for v in player:
-        #     if v not in new_list:
-        #         new_list.append(v)
-        # print(player)
-        # print(new_list)
+            player.add(i['name'])
 
         # 두 명 추출
-        winner = random.sample(player, 2)
-        print(winner)
+
+        if not player:
+            winner = ["사람이 없습니다", ""]
+        elif len(player) == 1:
+            winner = [player[0], ""]
+        else:
+            winner = random.sample(player, 2)
         
         db.shuttles.update_one({"date": date}, {"$set": {"winner": winner}})
 

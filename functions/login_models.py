@@ -37,8 +37,6 @@ class User:
         # change ObjectId to str
         user['_id'] = str(user['_id'])
 
-        
-        print(user)
         return jsonify(user), 200
 
     def signup(self):

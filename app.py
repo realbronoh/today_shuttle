@@ -10,14 +10,6 @@ app.secret_key = b'Q^\xb5Z\n\xed\x9d\xcf\n\xfem\x0c\xc2l\x96\\'
 from functions.cron import *
 
 
-
-#################################################
-
-# Shuttle().get_winner()
-
-
-
-
 ################################################
 # Routes
 
@@ -64,22 +56,3 @@ def test():
 
 if __name__ == '__main__':  
     app.run('0.0.0.0', port=5000, debug=True, use_reloader=False)
-
-
-# # 셔틀 만들기( 테스트용 )
-# @app.route('/makeshuttle', methods=['GET'])
-# def makeshuttles():
-
-#     new_shuttle = {
-#         'date': '2021-08-01',
-#         'winner': ['홍예지', '김갑수'],
-#         'content': [{'name': '김명민', 'item': '참치캔, 모니터'}, {'name' :'호날두', 'item':'콜라' }]
-#     }
-
-#     db.shuttles.insert_one(new_shuttle)
-#     return "muyaho"
-
-# # 물품 지우기
-# @app.route('/delete', methods=['POST'])
-# def deleteitem():
-#     return
