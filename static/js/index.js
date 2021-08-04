@@ -89,7 +89,7 @@ function postShuttle() {
         },
         error: function(response){
             alert(response.responseJSON.error);
-            window.location.reload();
+            window.location.href = '/login';
 
         }
     })

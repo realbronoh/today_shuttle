@@ -20,9 +20,8 @@ def do_cron_job():
     Shuttle().new_today_shuttle()
 
 scheduler = BackgroundScheduler()
-do_cron_job()
-scheduler.add_job(func=do_cron_job, trigger="interval", seconds=60)
-scheduler.add_job(at_lunch_time, 'cron', hour='9', minute='19')
+# scheduler.add_job(func=do_cron_job, trigger="interval", seconds=60)
+scheduler.add_job(do_cron_job, 'cron', minute='*/3')
 scheduler.start()
 
 
