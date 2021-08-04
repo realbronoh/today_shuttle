@@ -146,7 +146,8 @@ label {
 }
 
 .btn {
-  margin: 10px 30px 24px 30px;
+  /* margin: 10px 30px 24px 30px; */
+  margin: 1rem auto;
   padding: 0.6rem;
   font-size: 14px;
   line-height: 24px;
@@ -162,7 +163,7 @@ label {
   /* display: inline-block; */
   background: #6A60A9;
   transition: color .15s ease, background-color .15s ease;
-  width: 20rem;
+  width: 18rem;
 }
 
 .btn:hover {
@@ -179,7 +180,7 @@ label {
 }
 
 input[type=submit] {
-  margin: 34px auto 24px;
+  /* margin: 34px auto 24px; */
   display: block;
 }
 
