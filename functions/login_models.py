@@ -17,7 +17,7 @@ class User:
         ##############################
         ## Suttle().post_additem() 내 형식이랑 같아야 함
         now = datetime.datetime.now()
-        today = now.strftime('%Y-%m-%d')
+        today = sorted(db.shuttles.find({}), key=lambda x: x['date'], reverse=True)[0]['date']
         return render_template('index.html', session=session, data=data, today=today)
 
 
