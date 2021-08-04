@@ -22,7 +22,10 @@ class User:
     def start_session(self, user):
         # delete before store user data in session
         del user['password']
-        del user['postings']  ## 수정 부분
+        try:
+            del user['postings']  ## 수정 부분
+        except:
+            pass
         session['logged_in'] = True
         session['user'] = user
 

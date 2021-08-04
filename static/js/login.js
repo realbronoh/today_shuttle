@@ -98,10 +98,10 @@ function handleSubmitChangePW(event) {
 // function handleClickCreateAccountBtn(event){
 //     const signUpCard = document.querySelector("#sign-up-card");
 //     if (signUpCard.classList.contains("hide")){
-//         event.target.value = "Close Create Account Card";
+//         event.target.value = "Close ffff";
 //     }
 //     else{
-//         event.target.value = "CREATE ACCOUNT";
+//         event.target.value = "CREATE yyyyT";
 //     }
 //     signUpCard.classList.toggle("hide");
 // }
@@ -109,10 +109,10 @@ function handleSubmitChangePW(event) {
 // function handleClickChangePWBtn(event){
 //     const changePWCard = document.querySelector("#change-pw-card");
 //     if (changePWCard.classList.contains("hide")){
-//         event.target.value = "Close Change PW Card";
+//         event.target.value = "Close ffff";
 //     }
 //     else{
-//         event.target.value="CHANGE PASSWORD";
+//         event.target.value="CHANGE yyyyD";
 //     }
 //     changePWCard.classList.toggle("hide");
 // }
