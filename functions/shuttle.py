@@ -68,22 +68,22 @@ class Shuttle():
         info = data[0]['content']
         date = data[0]['date']
 
-        player = []
+        player = set()
         
         for i in info :
-            player.append(i.get('name'))
+            player.add(i.get('name'))
             # print(data[0]['content'][i]) <- 이게 뭔 뻘짓
 
         # 리스트 중복 제거 (한 사람이 여러 개 넣어도 당첨 확률은 다른이들과 동일함)
-        new_list = []
-        for v in player:
-            if v not in new_list:
-                new_list.append(v)
-        print(player)
-        print(new_list)
+        # new_list = []
+        # for v in player:
+        #     if v not in new_list:
+        #         new_list.append(v)
+        # print(player)
+        # print(new_list)
 
         # 두 명 추출
-        winner = random.sample(new_list, 2)
+        winner = random.sample(player, 2)
         print(winner)
         
         db.shuttles.update_one({"date": date}, {"$set": {"winner": winner}})
