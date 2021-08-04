@@ -2,10 +2,21 @@ from flask import Flask, render_template
 from functions.shuttle import Shuttle
 from functions.login_models import User
 
-
 app = Flask(__name__)
 app.secret_key = b'Q^\xb5Z\n\xed\x9d\xcf\n\xfem\x0c\xc2l\x96\\'
 # 'os.urandom(16)'
+
+#import cron
+from functions.cron import *
+
+
+
+#################################################
+
+Shuttle().get_winner()
+
+
+
 
 ################################################
 # Routes
@@ -49,7 +60,7 @@ def test():
 
 
 if __name__ == '__main__':  
-    app.run('0.0.0.0', port=5000, debug=True)
+    app.run('0.0.0.0', port=5000, debug=True, use_reloader=False)
 
 
 # # 셔틀 만들기( 테스트용 )
