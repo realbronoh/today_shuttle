@@ -17,7 +17,7 @@ class Shuttle():
 
     def new_today_shuttle(self):
         now = datetime.datetime.now()
-        nowDate = now.strftime('%Y-%m-%d')
+        nowDate = now.strftime('%Y-%m-%d %H:%M')
 
         today_shuttle = {
             'date': nowDate,
@@ -63,10 +63,11 @@ class Shuttle():
         # latest = db.collection.find().limit(1).sort({'$natural':-1})
         # latest = db.shuttles.find().sort({'_id': -1}).limit(1)
 
-        # get latest shuttle
         data = sorted(db.shuttles.find({}), key=lambda x: x['date'], reverse=True)
-
+        # get latest shuttle
         info = data[0]['content']
+        date = data[0]['date']
+
         player = []
         
         for i in info :
@@ -84,9 +85,8 @@ class Shuttle():
         # 두 명 추출
         winner = random.sample(new_list, 2)
         print(winner)
-
-
-        print('###############')
+        
+        db.shuttles.update_one({"date": date}, {"$set": {"winner": winner}})
 
 
 

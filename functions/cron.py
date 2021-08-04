@@ -15,7 +15,8 @@ def print_date_time():
 def at_lunch_time():
     print(time.strftime("%A, %d. %B %Y %I:%M:%S %p"))
 
-def new_shuttle():
+def do_cron_job():
+    Shuttle().get_winner()
     Shuttle().new_today_shuttle()
 
 
