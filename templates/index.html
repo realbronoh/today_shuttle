@@ -30,15 +30,19 @@
       
 
       <div id="last-cards">
+              
         {% for each_data in data %}
         {% if each_data['date'] == today %}
         <div class="wrap">
-
           <div class="current-card p-5 mb-4 rounded-3">
             <div class="container-fluid py-5">
               <h1 class="display-5 fw-bold">{{ each_data['date'][5:] }}의 셔틀 </h1>
               <br>
-              <h3><span id="clock"></span> 남았습니다</h3>
+              <div class="warning">
+                <h3 style="color:red">※남은 시간 전까지 필요한 물품을 적어주세요!</h3>
+                <h3 class="time"><span id="clock"></span> 남았습니다</h3>
+              </div>
+              <br>
               <div class="input-box">
                 <input id="post-sub" class="form-control post-sub" placeholder="필요 물품을 적어주세요!">
                 <button id="btn-post" class="btn btn-primary btn-post" onclick="postShuttle()">제출</button>

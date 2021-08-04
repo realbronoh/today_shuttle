@@ -56,10 +56,14 @@ p {
   margin: 24px 0;
 }
 
+.homeIcon {
+  margin-left: 58%;
+}
+
 /* Cards */
 .card-wrapper {
   margin: 0 auto;
-  padding: 90px 30px;
+  padding: 10px 30px;
   flex-wrap: wrap;
   justify-content: center;
   display: flex;

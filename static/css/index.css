@@ -69,3 +69,9 @@ body {
     display: inline-block;
     width: 550px;
 }
+
+.warning {
+    width: 87%;
+    display: flex;
+    justify-content: space-between;
+}
