@@ -74,7 +74,7 @@
 
 function postShuttle() {
     let items = $('#post-sub').val();
-    console.log(items);
+    // console.log(items);
     $.ajax({
         type: "POST",
         url: "/additem",  // 라우트
@@ -83,7 +83,12 @@ function postShuttle() {
             if (response["result"] == "success") {
                 alert('제출이 완료됐습니다!');
                 window.location.reload();
+            } else {
+                alert('로그인 먼저 하삼');
             }
+        },
+        fail: function(response) {
+            alert('로그인 먼저 해주세요!');
         }
     })
 }

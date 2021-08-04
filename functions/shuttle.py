@@ -27,12 +27,15 @@ class Shuttle():
         
         userID = session['user']['userID']
 
+        name = session['user']['name']  ## 수정(추가함) by Dapsu
+
         now = datetime.datetime.now()
         nowDate = now.strftime('%Y-%m-%d')
 
         new_items = {
-            'name': userID,
-            'item': item
+            'name': name,  ## 수정(기존에 userID) by Dapsu
+            'item': item,
+            'userID' : userID
         }
 
         additem_result = db.items.insert_one(new_items)
