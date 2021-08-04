@@ -95,30 +95,50 @@ function handleSubmitChangePW(event) {
     event.preventDefault();
 }
 
-function handleClickCreateAccountBtn(event){
-    const signUpCard = document.querySelector("#sign-up-card");
-    if (signUpCard.classList.contains("hide")){
-        event.target.value = "Close Create Account Card";
-    }
-    else{
-        event.target.value = "CREATE ACCOUNT";
-    }
-    signUpCard.classList.toggle("hide");
+// function handleClickCreateAccountBtn(event){
+//     const signUpCard = document.querySelector("#sign-up-card");
+//     if (signUpCard.classList.contains("hide")){
+//         event.target.value = "Close ffff";
+//     }
+//     else{
+//         event.target.value = "CREATE yyyyT";
+//     }
+//     signUpCard.classList.toggle("hide");
+// }
+
+// function handleClickChangePWBtn(event){
+//     const changePWCard = document.querySelector("#change-pw-card");
+//     if (changePWCard.classList.contains("hide")){
+//         event.target.value = "Close ffff";
+//     }
+//     else{
+//         event.target.value="CHANGE yyyyD";
+//     }
+//     changePWCard.classList.toggle("hide");
+// }
+
+$('#change-pw-card').hide();
+$('#sign-up-card').hide();
+
+function showSignUpbtn() {
+    $('#sign-up-card').show();
+    $('#log-in-card').hide();
 }
 
-function handleClickChangePWBtn(event){
-    const changePWCard = document.querySelector("#change-pw-card");
-    if (changePWCard.classList.contains("hide")){
-        event.target.value = "Close Change PW Card";
-    }
-    else{
-        event.target.value="CHANGE PASSWORD";
-    }
-    changePWCard.classList.toggle("hide");
+function showChangeBtn() {
+    $('#change-pw-card').show();
+    $('#log-in-card').hide();
 }
+
+function backtoLogin() {
+    $('#change-pw-card').hide();
+    $('#sign-up-card').hide();
+    $('#log-in-card').show();
+}
+
 
 signupForm.addEventListener("submit", handleSubmit);
 loginForm.addEventListener("submit", handleSubmitLogin);
 changePWForm.addEventListener("submit", handleSubmitChangePW);
-createAccountBtn.addEventListener("click", handleClickCreateAccountBtn);
-changePWBtn.addEventListener("click", handleClickChangePWBtn);
+// createAccountBtn.addEventListener("click", handleClickCreateAccountBtn);
+// changePWBtn.addEventListener("click", handleClickChangePWBtn);

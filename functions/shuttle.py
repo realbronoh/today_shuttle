@@ -45,13 +45,21 @@ class Shuttle():
         name = session['user']['name']
         userID = session['user']['userID']
 
+        name = session['user']['name']  ## 수정(추가함) by Dapsu
+
         now = datetime.datetime.now()
         nowDate = now.strftime('%Y-%m-%d')
 
         new_items = {
+<<<<<<< HEAD
             'name': name,
             'item': item,
             'userID': userID
+=======
+            'name': name,  ## 수정(기존에 userID) by Dapsu
+            'item': item,
+            'userID' : userID
+>>>>>>> front-end
         }
 
         additem_result = db.items.insert_one(new_items)

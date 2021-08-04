@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- css -->
-    <link rel="stylesheet" href="/static/css/normalize.css">
+    <!-- <link rel="stylesheet" href="/static/css/normalize.css"> -->
     <link rel="stylesheet" href="/static/css/styles.css">
 
     <!-- JQuery -->
@@ -20,7 +20,7 @@
     <h1>Hello</h1>
     <div class="card-wrapper">
         <!-- sign up card -->
-        <div class="card hide" id="sign-up-card">
+        <div class="card" id="sign-up-card">
             <h1 class="center">Create an Account</h1>
             <form name="signup-form">
 
@@ -36,11 +36,12 @@
                 <p class="error error--hidden"></p>
 
                 <input type="submit" value="Sign Up" class="btn">
+                <input id="BacktoLogin" type="button" value="Back to Log in" class="btn" onclick="backtoLogin()">
 
             </form>
         </div>
         <!-- Change Password Card -->
-        <div class="card hide" id="change-pw-card">
+        <div class="card" id="change-pw-card">
             <h1 class="center">Change Password</h1>
             <form name="change-pw-form">
 
@@ -55,12 +56,13 @@
 
                 <p class="error error--hidden"></p>
                 <input type="submit" value="Change" class="btn">
+                <input id="BacktoLogin" type="button" value="Back to Log in" class="btn" onclick="backtoLogin()">
 
             </form>
         </div>
 
         <!-- login card -->
-        <div class="card" id="log-in-card">
+        <div class="card " id="log-in-card">
             <h1 class="center">Log In</h1>
             <form name="login-form">
 
@@ -72,12 +74,16 @@
 
                 <p class="error error--hidden"></p>
 
-                <input type="submit" value="Log In" class="btn">
-                <input id="createAccountBtn" type="button" value="Create Account" class="btn">
-                <input id="changePWBtn" type="button" value="Change Password" class="btn">
+                <div class="btn-set">
+                    <input type="submit" value="Log In" class="btn">
+                    <input id="createAccountBtn" type="button" value="Create Account" class="btn" onclick="showSignUpbtn()">
+                    <input id="changePWBtn" type="button" value="Change Password" class="btn" onclick="showChangeBtn()">
+                </div>
+                
             </form>
         </div>
     </div>
+    
     <!-- JS scripts -->
     <script src="/static/js/login.js"></script>
 
