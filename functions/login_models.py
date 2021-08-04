@@ -4,6 +4,7 @@
 from flask import jsonify, request, session, redirect, render_template
 from passlib.hash import pbkdf2_sha256
 import pymongo
+import datetime
 
 # Database
 client = pymongo.MongoClient('3.35.205.48', 27017)
@@ -13,9 +14,11 @@ class User:
 
     def render_homepage(self):
         data = sorted(db.shuttles.find({}), key=lambda x: x['date'], reverse=True)
-        #########################################################
-        print(data)
-        return render_template('index.html', session=session, data=data, today='2021-08-03')
+        ##############################
+        ## Suttle().post_additem() 내 형식이랑 같아야 함
+        now = datetime.datetime.now()
+        today = now.strftime('%Y-%m-%d')
+        return render_template('index.html', session=session, data=data, today=today)
 
 
 
@@ -23,6 +26,8 @@ class User:
     def start_session(self, user):
         # delete before store user data in session
         del user['password']
+        del user['postings']
+
         session['logged_in'] = True
         session['user'] = user
 

@@ -84,6 +84,11 @@ function postShuttle() {
                 alert('제출이 완료됐습니다!');
                 window.location.reload();
             }
+        },
+        error: function(response){
+            alert(response.responseJSON.error);
+            window.location.reload();
+
         }
     })
 }
@@ -98,6 +103,28 @@ function deleteBtn(name) {
                 alert('삭제 완료!');
                 window.location.reload();
             }
+        }
+    })
+}
+
+///////////////////////////////////////////////
+// Delete Button  (노진형)
+
+function handleDeleteBtn(id, date){
+    $.ajax({
+        type: "POST",
+        url: "/deleteitem",
+        data: { _id: id,
+                date: date},
+        success: function(response){
+            alert(response.success);
+            console.log(response);
+            window.location.href = '/';
+
+        },
+        error: function(response){
+            alert(response.responseJSON.error);
+            window.location.href = '/';
         }
     })
 }

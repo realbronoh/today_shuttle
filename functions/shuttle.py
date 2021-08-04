@@ -2,11 +2,15 @@
 from flask import request, session, jsonify
 from pymongo import MongoClient
 import datetime
+<<<<<<< Updated upstream
 # from bson.json_util import dumps
 
 import random
 
 import pymongo
+=======
+from bson import ObjectId
+>>>>>>> Stashed changes
 
 ##########################
 # DB
@@ -28,16 +32,26 @@ class Shuttle():
         return None
 
     def post_additem(self):
+
+        # check log in 
+        if 'logged_in' not in session:
+            return jsonify({"error": "not logged in"}), 400
+
         item = request.form['items_give']
-        
+        # check empty
+        if item == "":
+            return jsonify({"error": "empty string"}), 400
+
+        name = session['user']['name']
         userID = session['user']['userID']
 
         now = datetime.datetime.now()
         nowDate = now.strftime('%Y-%m-%d')
 
         new_items = {
-            'name': userID,
-            'item': item
+            'name': name,
+            'item': item,
+            'userID': userID
         }
 
         additem_result = db.items.insert_one(new_items)
@@ -53,6 +67,7 @@ class Shuttle():
         # db.shuttles.update_one({'date': nowDate}, { '$push' : { 'content': new_items }})
         # db.shuttles.update_one({'data': nowDate}, new_items)
 
+<<<<<<< Updated upstream
     def get_winner(self):
         # now = datetime.datetime.now()
         # nowDate = now.strftime('%Y-%m-%d')
@@ -91,5 +106,37 @@ class Shuttle():
 
 
 
+=======
+    def delete_item(self):
+        id = ObjectId(request.form.get('_id'))
+        posted_date = request.form.get('date')
+
+        # check if user did log in
+        if 'logged_in' not in session:
+            return jsonify({"error": "not logged in"}), 400
+
+        user_id = ObjectId(session['user']['_id'])
+        # check user matches the posting
+        userdata = db.users.find_one({"_id": user_id})
+        if id not in userdata['postings']:
+            return jsonify({"error": "others postings"}), 400
+
+        # delete the postings @ items, shuttles, users collection
+        cond1 = db.items.delete_one({"_id": id})
+        cond2 = db.users.update_one({"_id": user_id}, {"$pull": {"postings":{"$in":[id]}}})
+
+        content = db.shuttles.find_one({"date": posted_date})['content']
+        for idx, posting in enumerate(content):
+            if posting['_id'] == id:
+                target = idx
+                break
+        del content[idx]
+        # re update to mongoDB
+        cond3 = db.shuttles.update_one({"date": posted_date}, {"$set": {"content": content}})
+        if cond1 and cond2 and cond3:
+            return jsonify({"success": "deleted successfully"}), 200
+
+        return jsonify({"error": "deleting failed"}), 400
+>>>>>>> Stashed changes
 
 

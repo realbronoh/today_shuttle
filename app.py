@@ -25,7 +25,6 @@ Shuttle().get_winner()
 def home():
     return User().render_homepage()
 
-# 오늘 셔틀 추가
 @app.route('/addtodayshuttle', methods=['GET'])
 def add_today():
     return Shuttle().new_today_shuttle()
@@ -33,6 +32,10 @@ def add_today():
 @app.route('/additem', methods=['POST'])
 def post_additem():
     return Shuttle().post_additem()
+
+@app.route('/deleteitem', methods=['POST'])
+def delete_item():
+    return Shuttle().delete_item()
 
 @app.route('/login/')
 def login_window():

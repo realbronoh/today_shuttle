@@ -36,17 +36,17 @@
 
           <div class="p-5 mb-4 bg-light rounded-3"">
             <div class="container-fluid py-5">
-              <h1 class="display-5 fw-bold">00월 00일의 셔틀 : </h1>
+              <h1 class="display-5 fw-bold">{{ each_data['date'] }}의 셔틀 : 남은시간()</h1>
               <div class="input-box">
                 <input id="post-sub" class="form-control post-sub" placeholder="필요 물품을 적어주세요!">
                 <button id="btn-post" class="btn btn-primary btn-post" onclick="postShuttle()">제출</button>
               </div>
               <div class="memo-wrap">
-                {% for person in each_data['content'] %}
-                <div class="memo-list">
+                {% for person in each_data['content'][::-1] %}
+                <div class="memo-list" id="{{ person['_id'] }}">
                   <span class="memo-name">{{ person['name'] }}</span>
                   <span class="memo-item">{{ person['item'] }}</span>
-                  <span class="memo-del"><button class="btn btn-dark btn-sm">삭제</button></span>
+                  <span class="memo-del"><button class="btn btn-dark btn-sm" onclick="handleDeleteBtn(`{{ person['_id'] }}`, `{{ each_data['date'] }}`)">삭제</button></span>
                 </div>
                 {% endfor %}
 
@@ -61,12 +61,12 @@
         <div class="wrap">
           <div class="p-5 mb-4 bg-light rounded-3">
             <div class="container-fluid py-5">
-              <h1 class="display-5 fw-bold">00월 00일의 셔틀 : {{ each_data['winner'][0] }}, {{ each_data['winner'][1] }}</h1>
+              <h1 class="display-5 fw-bold">{{ each_data['date'] }}의 셔틀 : {{ each_data['winner'][0] }}, {{ each_data['winner'][1] }}</h1>
               <div class="input-box">
               </div>
               <div class="memo-wrap">
-                {% for person in each_data['content'] %}
-                <div class="memo-list">
+                {% for person in each_data['content'][::-1] %}
+                <div class="memo-list" id="{{ person['_id'] }}">
                   <span class="memo-name">{{ person['name'] }}</span>
                   <span class="memo-item">{{ person['item'] }}</span>
                 </div>
