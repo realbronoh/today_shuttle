@@ -18,7 +18,8 @@ class Shuttle():
 
         today_shuttle = {
             'date': nowDate,
-            'content': []
+            'content': [],
+            'winner': []
         }
 
         db.shuttles.insert_one(today_shuttle)
@@ -85,7 +86,7 @@ class Shuttle():
         if not player:
             winner = ["사람이 없습니다", ""]
         elif len(player) == 1:
-            winner = [player[0], ""]
+            winner = [list(player)[0], "혼자 가세요...ㅋ"]
         else:
             winner = random.sample(player, 2)
         
