@@ -39,7 +39,7 @@ class Shuttle():
         name = session['user']['name']
         userID = session['user']['userID']
 
-        name = session['user']['name']  ## 수정(추가함) by Dapsu
+        name = session['user']['name']
 
         new_items = {
             'name': name,
@@ -116,9 +116,8 @@ class Shuttle():
         content = db.shuttles.find_one({"date": posted_date})['content']
         for idx, posting in enumerate(content):
             if posting['_id'] == id:
-                target = idx
+                del content[idx]
                 break
-        del content[idx]
         # re update to mongoDB
         cond3 = db.shuttles.update_one({"date": posted_date}, {"$set": {"content": content}})
         if cond1 and cond2 and cond3:
